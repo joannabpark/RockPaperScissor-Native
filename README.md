@@ -1,1 +1,1 @@
-Rock-Paper-Scissor using React Native
+Text racer game using React Native

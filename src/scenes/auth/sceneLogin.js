@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { userLogin } from '../../redux/actions/user.actions'
 import BackgroundPage from '../../components/global/layout/BackgroundPage'
-import backgroundImage from '../../../assets/blueBubbles.jpg'
+import backgroundImage from '../../../assets/e9edf6.png'
 import TextButton from '../../components/global/ui/TextButton'
 
 const SceneLogin = ({ loginUser, isUserLoggedIn, storedUserName }) => {
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     },
     headline: {
         fontWeight: 'bold',
+        color: 'hotpink',
         fontSize: 23,
     },
     input: {

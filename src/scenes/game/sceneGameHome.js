@@ -2,14 +2,14 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import BackgroundPage from '../../components/global/layout/BackgroundPage'
-import RockPaperScissorsLizardSpock from '../../components/other/RockPaperScissorsLizardSpock'
+import TypeWordPage from '../../components/other/TypeWordPage'
 import IconButton from '../../components/global/ui/IconButton'
-import backgroundImage from '../../../assets/coolTree.jpg'
+import backgroundImage from '../../../assets/e9edf6.png'
 
 const SceneGameHome = ({ navigation }) => (
     <BackgroundPage background={backgroundImage}>
         <View style={styles.contentBox}>
-            <RockPaperScissorsLizardSpock />
+            <TypeWordPage />
 
             <IconButton
                 icon="❌"

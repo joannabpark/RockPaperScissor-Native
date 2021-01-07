@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     baseText: {
-        fontSize: 18,
+        fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
@@ -41,18 +41,18 @@ const styles = StyleSheet.create({
         color: '#000',
     },
     primaryButton: {
-        backgroundColor: 'steelblue',
+        backgroundColor: 'hotpink',
         borderColor: 'grey',
     },
     primaryText: {
-        color: '#fff',
+        color: 'white',
     },
     secondaryButton: {
-        backgroundColor: 'steelblue',
+        backgroundColor: 'hotpink',
         borderColor: 'grey',
     },
     secondaryText: {
-        color: '#fff',
+        color: 'white',
     },
     successButton: {
         backgroundColor: 'green',

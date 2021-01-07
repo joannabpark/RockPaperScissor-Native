@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, View, StyleSheet } from 'react-native'
+import { Image, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { userLogout } from '../../redux/actions/user.actions'
@@ -28,8 +28,11 @@ const SceneHome = ({ logout, navigation }) => (
             customStyles={styles.buttonExit}
             onPress={logout}
         />
+        <Text style={styles.rule}>
+            Type as many words as you can before time runs out.
+        </Text>
         <TextButton
-            title="Play the game"
+            title="Start"
             type="primary"
             onPress={() => navigation.navigate('GameHome')}
         />
@@ -40,10 +43,17 @@ const SceneHome = ({ logout, navigation }) => (
 )
 
 const styles = StyleSheet.create({
+    rule: {
+        marginBottom: 40,
+        fontSize: 30,
+        textAlign: 'center',
+        padding: 10,
+        color: 'hotpink'
+    },
     logo: {
         width: 215,
         height: 230,
-        marginBottom: 100,
+        marginBottom: 50,
     },
     buttonSettings: {
         position: 'absolute',
