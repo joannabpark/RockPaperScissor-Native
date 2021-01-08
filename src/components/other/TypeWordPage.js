@@ -1,36 +1,94 @@
 import React, { useState, useEffect } from 'react'
-import { Text, ImageBackground, StyleSheet } from 'react-native'
+import { Text, TextInput, Keyboard, View, ImageBackground, StyleSheet } from 'react-native'
+import TextButton from '../../components/global/ui/TextButton'
+import dismissKeyboard from 'react-native-dismiss-keyboard'
 // import IconButton from '../global/ui/IconButton'
 
 const TypeWordPage = () => {
 
-    const [score, setScore] = useState({ player: 0 })
+    // const [score, setScore] = useState({ player: 0 })
     // const [gameStarted, setGameStarted] = useState(false)
-    const [activeWord, setActiveWord] = useState('')
+    // const [activeWord, setActiveWord] = useState('')
     // const [activeLetters, setActiveLetters] = useState([])
     // const [wordsMastered, setWordsMastered] = useState(0)
-    const [timer, setTimer] = useState(60)
+    // const [timer, setTimer] = useState(60)
     // const [wordList, setWordList] = useState([])
 
-    useEffect(() => {
-        if (!timer) return;
-        const intervalId = setTimeout(() => {
-          setTimer(timer - 1);
-        }, 1000);
-        return () => clearInterval(intervalId);
-      }, [timer]);
+    // useEffect(() => {
+    //     if (!timer) return;
+    //     const intervalId = setTimeout(() => {
+    //       setTimer(timer - 1);
+    //     }, 1000);
+    //     return () => clearInterval(intervalId);
+    //   }, [timer]);
+
+    //   const startGame = () => {
+    //     setWordList(getWordList())
+    //       let word = getWord();
+    //         setActiveWord(getWord()),
+    //         setGameStarted(true),
+    //         setWordsMastered(0),
+    //         setTimer(60)
+    //     };
+
+    //    const handleBackspaceAndDelete = (event) => {
+    //         if(event.which == 46 || event.which == 8) {
+    //             setActiveLetters(activeLetters.slice(0,-1))
+    //             return true
+    //         } else {
+    //             let char = String.fromCharCode(event.which)
+    //             let newActiveLetters = activeLetters
+    //             newActiveLetters.push(char)
+
+    //             if (checkEqual(newActiveLetters, activeWord)) {
+    //                 setActiveWord(getWord()),
+    //                 setActiveLetters([]),
+    //                 setWordsMastered(wordsMastered + 1)
+    //             } else {
+    //                 setActiveLetters(newActiveLetters)
+    //             }
+    //         }
+    //     }
+
+    // const checkEqual = (arr1, arr2) => {
+    //     if(arr1.length !== arr2.length)
+    //         return false;
+    //     for(var i = arr1.length; i--;) {
+    //         if(arr1[i] !== arr2[i])
+    //             return false;
+    //     }
+  
+    //     return true;
+    // }
     
+    // const getRandomInt = (min=0, max) => {
+    //   return Math.floor(Math.random() * (max - min)) + min;
+    // }
+
+    // const getWord = () => {
+    //     let index = getRandomInt(0, wordList.length);
+    //     let wordToUse = wordList[index];
+    //     let newWordsList = wordList;
+    //     newWordsList.splice(index, 1);
+    //     setWordList(newWordsList)
+    //     return wordToUse.split('');
+    //   }  
+
+    const [score, setScore] = useState(0);
+    const [timer, setTimer] = useState(60);
+    const [targetWord, setTargetWord] = useState("");
+    const [inputWord, setInputWord] = useState("");
+
     const list = ['ACCOUNT','ACCURATE','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
   'ACTUAL','ACTUALLY','ADD','ADDITION','ADDITIONAL','ADJECTIVE','ADULT','ADVENTURE',
   'ADVICE','AFFECT','AFRAID','AFTER','AFTERNOON','AGAIN','AGAINST','AGE',
   'AGO','AGREE','AHEAD','AID','AIR','AIRPLANE','ALIKE','ALIVE',
   'ALL','ALLOW','ALMOST','ALONE','ALONG','ALOUD','ALPHABET','ALREADY',
-  'ALSO','ALTHOUGH','AM','AMONG','AMOUNT','ANCIENT','ANGLE','ANGRY',
+  'ALSO','ALTHOUGH','AMONG','AMOUNT','ANCIENT','ANGLE','ANGRY',
   'ANIMAL','ANNOUNCED','ANOTHER','ANSWER','ANTS','ANY','ANYBODY','ANYONE',
   'ANYTHING','ANYWAY','ANYWHERE','APART','APARTMENT','APPEARANCE','APPLE','APPLIED',
   'APPROPRIATE','ARE','AREA','ARM','ARMY','AROUND','ARRANGE','ARRANGEMENT',
-  'ARRIVE','ARROW','ART','ARTICLE','AS','ASIDE','ASK','ASLEEP',
-  'AT','ATE','ATMOSPHERE','ATOM','ATOMIC','ATTACHED','ATTACK','ATTEMPT',
+  'ARRIVE','ARROW','ART','ARTICLE','ASIDE','ASK','ASLEEP','ATE','ATMOSPHERE','ATOM','ATOMIC','ATTACHED','ATTACK','ATTEMPT',
   'ATTENTION','AUDIENCE','AUTHOR','AUTOMOBILE','AVAILABLE','AVERAGE','AVOID','AWARE',
   'AWAY','BABY','BACK','BAD','BADLY','BAG','BALANCE','BALL',
   'BALLOON','BAND','BANK','BAR','BARE','BARK','BARN','BASE',
@@ -126,8 +184,7 @@ const TypeWordPage = () => {
   'IMAGINE','IMMEDIATELY','IMPORTANCE','IMPORTANT','IMPOSSIBLE','IMPROVE','IN','INCH',
   'INCLUDE','INCLUDING','INCOME','INCREASE','INDEED','INDEPENDENT','INDICATE','INDIVIDUAL',
   'INDUSTRIAL','INDUSTRY','INFLUENCE','INFORMATION','INSIDE','INSTANCE','INSTANT','INSTEAD',
-  'INSTRUMENT','INTEREST','INTERIOR','INTO','INTRODUCED','INVENTED','INVOLVED','IRON',
-  'IS','ISLAND','IT','ITS','ITSELF','JACK','JAR','JET',
+  'INSTRUMENT','INTEREST','INTERIOR','INTO','INTRODUCED','INVENTED','INVOLVED','IRON','ISLAND','IT','ITS','ITSELF','JACK','JAR','JET',
   'JOB','JOIN','JOINED','JOURNEY','JOY','JUDGE','JUMP','JUNGLE',
   'JUST','KEEP','KEPT','KEY','KIDS','KILL','KIND','KITCHEN',
   'KNEW','KNIFE','KNOW','KNOWLEDGE','KNOWN','LABEL','LABOR','LACK',
@@ -159,8 +216,8 @@ const TypeWordPage = () => {
   'NO','NOBODY','NODDED','NOISE','NONE','NOON','NOR','NORTH',
   'NOSE','NOT','NOTE','NOTED','NOTHING','NOTICE','NOUN','NOW',
   'NUMBER','NUMERAL','NUTS','OBJECT','OBSERVE','OBTAIN','OCCASIONALLY','OCCUR',
-  'OCEAN','OF','OFF','OFFER','OFFICE','OFFICER','OFFICIAL','OIL',
-  'OLD','OLDER','OLDEST','ON','ONCE','ONE','ONLY','ONTO',
+  'OCEAN','OFF','OFFER','OFFICE','OFFICER','OFFICIAL','OIL',
+  'OLD','OLDER','OLDEST','ONCE','ONE','ONLY','ONTO',
   'OPEN','OPERATION','OPINION','OPPORTUNITY','OPPOSITE','OR','ORANGE','ORBIT',
   'ORDER','ORDINARY','ORGANIZATION','ORGANIZED','ORIGIN','ORIGINAL','OTHER','OUGHT',
   'OUR','OURSELVES','OUT','OUTER','OUTLINE','OUTSIDE','OVER','OWN',
@@ -245,7 +302,7 @@ const TypeWordPage = () => {
   'TROPICAL','TROUBLE','TRUCK','TRUNK','TRUTH','TRY','TUBE','TUNE',
   'TURN','TWELVE','TWENTY','TWICE','TWO','TYPE','TYPICAL','UNCLE',
   'UNDER','UNDERLINE','UNDERSTANDING','UNHAPPY','UNION','UNIT','UNIVERSE','UNKNOWN',
-  'UNLESS','UNTIL','UNUSUAL','UP','UPON','UPPER','UPWARD','US',
+  'UNLESS','UNTIL','UNUSUAL','UP','UPON','UPPER','UPWARD',
   'USE','USEFUL','USING','USUAL','USUALLY','VALLEY','VALUABLE','VALUE',
   'VAPOR','VARIETY','VARIOUS','VAST','VEGETABLE','VERB','VERTICAL','VERY',
   'VESSELS','VICTORY','VIEW','VILLAGE','VISIT','VISITOR','VOICE','VOLUME',
@@ -264,23 +321,64 @@ const TypeWordPage = () => {
   'YEAR','YELLOW','YES','YESTERDAY','YET','YOU','YOUNG','YOUNGER',
   'YOUR','YOURSELF','YOUTH','ZERO','ZOO']
 
-  useEffect(() => {
-    if (!activeWord) {
-        let randomWord = list[Math.floor(Math.random()*list.length)];
-        setActiveWord(randomWord)
+    useEffect(() => {
+        if (!timer) return;
+        const intervalId = setTimeout(() => {
+          setTimer(timer - 1);
+        }, 1000);
+        return () => clearInterval(intervalId);
+      }, [timer]);
+
+    const newWord = () => {
+          let randomWord = list[Math.floor(Math.random()*list.length)];
+          setTargetWord(randomWord)
     }
-  },[])
+
+    const newGame = () => {
+        newWord()
+    }
+
+    const onChange = (e) => {
+        setInputWord(e)
+      }
+
+    const handleKeyDown = (e) => {
+        if(e.nativeEvent.key === "Enter") {
+          if(e.target.value.toUpperCase() === targetWord) {
+            setScore(score + 1)
+            setInputWord("")
+            newWord()
+          }
+        }
+    }
 
     return (
         <>
-            <Text style={{ fontSize: 30, color: 'hotpink' }}>{`SCORE: ${score.player}`}</Text>
+                {!targetWord ? 
+                <View>
+                    <TextButton
+                    title="New Game"
+                    type="primary"
+                    onPress={newGame}
+                    />
+                </View>
+                :
+                <View>
+            <Text style={{ fontSize: 30, color: 'hotpink' }}>{`SCORE: ${score}`}</Text>
             <Text style={{ fontSize: 30, color: 'hotpink' }}>{`TIMER: ${timer}`}</Text>
-            <Text style={{ paddingTop: 100, fontSize: 60}}>{activeWord}</Text>
+            <Text style={{ paddingTop: 100, fontSize: 60}}>{targetWord}</Text>
+            <TextInput 
+            type="text" 
+            onKeyPress={(e) => console.log(e.nativeEvent.key)}
+            onChangeText={onChange} 
+            onSubmitEditing={() => Keyboard.dismiss()}
+            value={inputWord}/>
+            </View>
+            }
             <ImageBackground
                 style={styles.imageBackground}
             >
             </ImageBackground>
-
         </>
     )
 }

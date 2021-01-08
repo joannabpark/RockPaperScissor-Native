@@ -32,7 +32,7 @@ const SceneHome = ({ logout, navigation }) => (
             Type as many words as you can before time runs out.
         </Text>
         <TextButton
-            title="Start"
+            title="Go to game"
             type="primary"
             onPress={() => navigation.navigate('GameHome')}
         />
