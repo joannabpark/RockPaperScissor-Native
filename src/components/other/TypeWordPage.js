@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Text, TextInput, Keyboard, View, ImageBackground, StyleSheet } from 'react-native'
 import TextButton from '../../components/global/ui/TextButton'
-import dismissKeyboard from 'react-native-dismiss-keyboard'
+// import dismissKeyboard from 'react-native-dismiss-keyboard'
 // import IconButton from '../global/ui/IconButton'
 
 const TypeWordPage = () => {
-
-    // const [score, setScore] = useState({ player: 0 })
-    // const [gameStarted, setGameStarted] = useState(false)
-    // const [activeWord, setActiveWord] = useState('')
-    // const [activeLetters, setActiveLetters] = useState([])
-    // const [wordsMastered, setWordsMastered] = useState(0)
-    // const [timer, setTimer] = useState(60)
-    // const [wordList, setWordList] = useState([])
 
     // useEffect(() => {
     //     if (!timer) return;
@@ -73,11 +65,6 @@ const TypeWordPage = () => {
     //     setWordList(newWordsList)
     //     return wordToUse.split('');
     //   }  
-
-    const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(60);
-    const [targetWord, setTargetWord] = useState("");
-    const [inputWord, setInputWord] = useState("");
 
     const list = ['ACCOUNT','ACCURATE','ACRES','ACROSS','ACT','ACTION','ACTIVE','ACTIVITY',
   'ACTUAL','ACTUALLY','ADD','ADDITION','ADDITIONAL','ADJECTIVE','ADULT','ADVENTURE',
@@ -321,6 +308,11 @@ const TypeWordPage = () => {
   'YEAR','YELLOW','YES','YESTERDAY','YET','YOU','YOUNG','YOUNGER',
   'YOUR','YOURSELF','YOUTH','ZERO','ZOO']
 
+  const [score, setScore] = useState(0);
+  const [timer, setTimer] = useState(60);
+  const [targetWord, setTargetWord] = useState("");
+  const [inputWord, setInputWord] = useState("");
+
     useEffect(() => {
         if (!timer) return;
         const intervalId = setTimeout(() => {
@@ -343,13 +335,12 @@ const TypeWordPage = () => {
       }
 
     const handleKeyDown = (e) => {
-        if(e.nativeEvent.key === "Enter") {
-          if(e.target.value.toUpperCase() === targetWord) {
+      if(e.nativeEvent.text.toUpperCase() === targetWord) {
+            // debugger
             setScore(score + 1)
             setInputWord("")
             newWord()
           }
-        }
     }
 
     return (
@@ -368,10 +359,13 @@ const TypeWordPage = () => {
             <Text style={{ fontSize: 30, color: 'hotpink' }}>{`TIMER: ${timer}`}</Text>
             <Text style={{ paddingTop: 100, fontSize: 60}}>{targetWord}</Text>
             <TextInput 
+            blurOnSubmit={false}
+            enablesReturnKeyAutomatically={true}
+            style={styles.textbox}
             type="text" 
-            onKeyPress={(e) => console.log(e.nativeEvent.key)}
-            onChangeText={onChange} 
-            onSubmitEditing={() => Keyboard.dismiss()}
+            onChangeText={onChange}
+            onSubmitEditing={(e) => handleKeyDown(e)}
+            autoFocus={true}
             value={inputWord}/>
             </View>
             }
@@ -384,6 +378,10 @@ const TypeWordPage = () => {
 }
 const diameter = 300
 const styles = StyleSheet.create({
+    textbox:{
+      backgroundColor: 'white',
+      textAlign: 'center'
+    },
     imageBackground: {
         width: diameter,
         height: diameter,
