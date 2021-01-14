@@ -7,6 +7,7 @@ import { enableScreens } from 'react-native-screens'
 import store, { persistor } from './src/redux/store'
 import Navigation from './src/navigation'
 import SceneAppLoading from './src/scenes/auth/sceneAppLoading'
+import FlashMessage from "react-native-flash-message";
 
 enableScreens()
 
@@ -16,6 +17,7 @@ export default function App() {
             <PersistGate loading={<SceneAppLoading />} persistor={persistor}>
                 <StatusBar hidden />
                 <Navigation />
+                <FlashMessage position='top'/>
             </PersistGate>
         </Provider>
     )

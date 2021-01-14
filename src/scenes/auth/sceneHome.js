@@ -1,16 +1,14 @@
 import React from 'react'
-import { Image, Text, StyleSheet } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { userLogout } from '../../redux/actions/user.actions'
 import TextButton from '../../components/global/ui/TextButton'
 import IconButton from '../../components/global/ui/IconButton'
 import BackgroundPage from '../../components/global/layout/BackgroundPage'
 import backgroundImage from '../../../assets/e9edf6.png'
-import logo from '../../../assets/textbubble.jpg'
-// import VersionTag from '../../components/other/VersionTag'
+import logo from '../../../assets/logo.png'
 
-const SceneHome = ({ logout, navigation }) => (
+const SceneHome = ({ navigation }) => (
     <BackgroundPage background={backgroundImage}>
         <Image
             source={logo}
@@ -22,34 +20,15 @@ const SceneHome = ({ logout, navigation }) => (
             customStyles={styles.buttonSettings}
             onPress={() => navigation.navigate('Settings')}
         />
-        <IconButton
-            icon="❌"
-            size={30}
-            customStyles={styles.buttonExit}
-            onPress={logout}
-        />
-        <Text style={styles.rule}>
-            Type as many words as you can before time runs out.
-        </Text>
         <TextButton
             title="Go to game"
             type="primary"
             onPress={() => navigation.navigate('GameHome')}
         />
-        {/* <View style={styles.versionTag}>
-            <VersionTag />
-        </View> */}
     </BackgroundPage>
 )
 
 const styles = StyleSheet.create({
-    rule: {
-        marginBottom: 40,
-        fontSize: 30,
-        textAlign: 'center',
-        padding: 10,
-        color: 'hotpink'
-    },
     logo: {
         width: 215,
         height: 230,
@@ -59,17 +38,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 10,
         left: 10,
-    },
-    buttonExit: {
-        position: 'absolute',
-        top: 15,
-        right: 15,
-    },
-    versionTag: {
-        position: 'absolute',
-        bottom: 10,
-        left: 10,
-    },
+    }
 })
 
 SceneHome.propTypes = {

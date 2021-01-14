@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     secondaryButton: {
         backgroundColor: 'hotpink',
         borderColor: 'grey',
+        margin: 10
     },
     secondaryText: {
         color: 'white',

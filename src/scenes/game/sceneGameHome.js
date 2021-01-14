@@ -9,10 +9,9 @@ import backgroundImage from '../../../assets/e9edf6.png'
 const SceneGameHome = ({ navigation }) => (
     <BackgroundPage background={backgroundImage}>
         <View style={styles.contentBox}>
-            <TypeWordPage />
-
+            <TypeWordPage navigation={navigation}/>
             <IconButton
-                icon="❌"
+                icon="🔙"
                 size={30}
                 customStyles={styles.buttonExit}
                 onPress={() => navigation.navigate('Home')}

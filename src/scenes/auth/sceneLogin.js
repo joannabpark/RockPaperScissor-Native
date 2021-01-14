@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-    View, Text, TextInput, StyleSheet,
+    View, Text, TextInput, StyleSheet, Alert
 } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -8,6 +8,7 @@ import { userLogin } from '../../redux/actions/user.actions'
 import BackgroundPage from '../../components/global/layout/BackgroundPage'
 import backgroundImage from '../../../assets/e9edf6.png'
 import TextButton from '../../components/global/ui/TextButton'
+import { showMessage } from "react-native-flash-message";
 
 const SceneLogin = ({ loginUser, isUserLoggedIn, storedUserName }) => {
     const [name, setName] = useState('')
@@ -26,10 +27,16 @@ const SceneLogin = ({ loginUser, isUserLoggedIn, storedUserName }) => {
                 <TextButton
                     title="Login"
                     type="secondary"
-                    onPress={() => loginUser(name || 'Anon')}
+                    onPress={() => loginUser(name || 'player')}
                 />
 
-                { isUserLoggedIn ? (<Text>{`Welcome, ${storedUserName}!`}</Text>) : undefined}
+                { isUserLoggedIn ? 
+                showMessage({
+                    message: `WELCOME, ${storedUserName.toUpperCase()}!`,
+                    backgroundColor: "hotpink",
+                    color: "black",
+            }) : undefined}
+
             </View>
 
         </BackgroundPage>
