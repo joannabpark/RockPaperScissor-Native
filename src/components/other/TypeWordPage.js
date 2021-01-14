@@ -3,6 +3,9 @@ import { Text, TextInput, View, ImageBackground, StyleSheet } from 'react-native
 import TextButton from '../../components/global/ui/TextButton'
 import PropTypes from 'prop-types'
 import { showMessage } from "react-native-flash-message";
+import AsyncStorage from '@react-native-community/async-storage'
+
+const STORAGE_KEY = '@save_score'
 
 const TypeWordPage = () => { 
 
@@ -202,6 +205,26 @@ const TypeWordPage = () => {
   const [timer, setTimer] = useState(15);
   const [targetWord, setTargetWord] = useState("");
   const [inputWord, setInputWord] = useState("");
+  const [bestScore, setBestScore] = useState("");
+   
+  const saveData = async () => {
+    const value = score
+      try {
+        await AsyncStorage.setItem(STORAGE_KEY, `${value}`)
+      } catch (e) {
+      }
+    }
+
+    const readData = async () => {
+      try {
+        const userScore = await AsyncStorage.getItem(STORAGE_KEY)
+    
+        if (userScore > bestScore) {
+          setBestScore(parseInt(userScore))
+        }
+      } catch (e) {
+      }
+    }
 
     const startTimer = () => {
       counter.current = setInterval(() => {
@@ -211,6 +234,8 @@ const TypeWordPage = () => {
 
     const stopTimer = () => {
       clearInterval(counter.current)
+      saveData()
+      readData()
     }
 
     const newWord = () => {
@@ -272,6 +297,7 @@ const TypeWordPage = () => {
             <View>
               <Text style={styles.text1}>Game Over!!!</Text>
               <Text style={styles.text3}>Your Score: {score}</Text>
+              <Text style={styles.text4}>High Score: {bestScore}</Text>
               <TextButton
               style={styles.button}
               title="Replay?"
@@ -315,7 +341,7 @@ const styles = StyleSheet.create({
     },
     word: {
       paddingTop: 100, 
-      fontSize: 60, 
+      fontSize: 50, 
       maxWidth: 350,
       textAlign: 'center'
     },
@@ -324,7 +350,7 @@ const styles = StyleSheet.create({
       fontSize: 30, 
       color: 'hotpink',
       padding: 10,
-      paddingTop: 240
+      paddingTop: 240,
     },
     text2: {
       textAlign: 'center', 
@@ -336,6 +362,16 @@ const styles = StyleSheet.create({
       fontSize: 30, 
       color: 'hotpink',
       marginBottom: 200,
+    },
+    text4: {
+      textAlign: 'center', 
+      fontSize: 30, 
+      color: 'hotpink',
+      borderColor: 'pink',
+      borderStyle: 'solid',
+      borderWidth: 4,
+      borderRadius: 10,
+      marginBottom: 20
     },
     textbox:{
       backgroundColor: 'white',
