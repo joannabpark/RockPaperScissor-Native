@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "game-project",
-    "slug": "game-project",
+    "name": "TextWarrior",
+    "slug": "textwarrior",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,19 +17,32 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.joannapark.textwarrior",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.joannapark.textwarrior",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
-      "sourceExts": [ "js", "json", "ts", "tsx", "jsx", "vue"]
-    }
+      "sourceExts": [
+        "js",
+        "json",
+        "ts",
+        "tsx",
+        "jsx",
+        "vue"
+      ]
+    },
+    "description": "Phone game that tests your texting skills. Built using React Native, Redux, Hooks, AsyncStorage",
+    "githubUrl": "https://github.com/joannabpark/Text-Game-React-Native"
   }
 }
