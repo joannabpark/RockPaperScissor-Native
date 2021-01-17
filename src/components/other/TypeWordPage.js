@@ -287,7 +287,7 @@ const TypeWordPage = () => {
                 <Text style={styles.rule}>Text as many words as you can before time runs out.</Text>
                 <TextButton
                   title="Start New Game"
-                  type="primary"
+                  type="secondary"
                   onPress={newGame}
                 />
             </View>
@@ -371,11 +371,13 @@ const styles = StyleSheet.create({
       borderStyle: 'solid',
       borderWidth: 4,
       borderRadius: 10,
-      marginBottom: 20
+      marginBottom: 20,
+      padding: 10
     },
     textbox:{
       backgroundColor: 'white',
       textAlign: 'center',
+      height: 25,
     },
     imageBackground: {
         width: diameter,

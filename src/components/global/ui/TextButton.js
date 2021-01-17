@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     primaryButton: {
         backgroundColor: 'hotpink',
         borderColor: 'grey',
+        margin: 10
     },
     primaryText: {
         color: 'white',
@@ -50,7 +51,11 @@ const styles = StyleSheet.create({
     secondaryButton: {
         backgroundColor: 'hotpink',
         borderColor: 'grey',
-        margin: 10
+        margin: 10,
+        width: 200,
+        justifyContent: 'center',
+        position: 'relative',
+        marginLeft: 80,
     },
     secondaryText: {
         color: 'white',

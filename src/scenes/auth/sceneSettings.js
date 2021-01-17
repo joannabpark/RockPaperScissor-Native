@@ -14,12 +14,12 @@ const SceneSettings = ({ logout, navigation, storedUserName }) => (
         </Text>
         <TextButton 
             title="Back to Game" 
-            type="secondary"
+            type="primary"
             onPress={() => navigation.goBack()} 
         />
         <TextButton
             title="Logout"
-            type="secondary"
+            type="primary"
             onPress={logout}
         />
     </DefaultPage>

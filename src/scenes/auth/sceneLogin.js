@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-    View, Text, TextInput, StyleSheet, Alert
+    View, Text, TextInput, StyleSheet
 } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -17,7 +17,7 @@ const SceneLogin = ({ loginUser, isUserLoggedIn, storedUserName }) => {
         <BackgroundPage background={backgroundImage}>
             <View style={styles.container}>
                 <Text style={styles.headline}>
-                    Enter your name here:
+                    Enter your name:
                 </Text>
                 <TextInput
                     style={styles.input}
@@ -26,7 +26,7 @@ const SceneLogin = ({ loginUser, isUserLoggedIn, storedUserName }) => {
                 />
                 <TextButton
                     title="Login"
-                    type="secondary"
+                    type="primary"
                     onPress={() => loginUser(name || 'player')}
                 />
 
