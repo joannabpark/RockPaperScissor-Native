@@ -27,7 +27,7 @@ const SceneSplash = ({ isUserLoggedIn, navigation }) => {
                 />
                 <View>
                     <Text style={{ fontSize: 23, marginTop: 80 }}>
-                        by JoAnna Park
+                        Created by JoAnna Park
                     </Text>
                 </View>
             </DefaultPage>

@@ -249,7 +249,7 @@ const TypeWordPage = () => {
     }
 
     const restartGame = () => {
-      setTimer(10)
+      setTimer(15)
       setScore(0)
       setInputWord('')
       newGame()
